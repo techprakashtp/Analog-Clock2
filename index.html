@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Analog-Clock-2</title>
+	<style>
+		body {
+			background-color: midnightblue;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			min-height: 100vh;
+		}
+		.clock {
+			position: relative;
+			overflow: hidden;
+			background-color: inherit;
+			height: 75vmin;
+			width: 75vmin;
+			border-radius: 50%;
+			box-shadow: 0 -12px 12px rgba(255,255,255,.1),
+						inset 0 -12px 12px rgba(255,255,255,.1),
+						0 12px 12px rgba(0,0,0,.1),
+						inset 0 12px 12px rgba(0,0,0,.1);
+		}
+			.clock div {
+				position: absolute;
+				top: 0;
+				left: 0;
+				height: 100%;
+				width: 100%;
+				background-color: transparent;
+			}
+				.clock div div {
+					left: 50%;
+					width: 0;
+				}
+			.clock span {
+				position: absolute;
+				font-family: Arial;
+				font-size: 5vmin;
+				font-weight: bold;
+				color: lime;
+			}
+
+			.clock .h12 {
+				left: 52%;
+				top: 3%;
+				transform: translateX(-50%);
+			}
+			.clock .h12::before {
+				content: "12";
+			}
+
+			.clock .h1 {
+				left: 72%;
+				top: 9%;
+				transform: translateX(-50%);
+			}
+			.clock .h1::before {
+				content: "1";
+			}
+
+			.clock .h2 {
+				left: 88%;
+				top: 25%;
+				transform: translateX(-50%);
+			}
+			.clock .h2::before {
+				content: "2";
+			}
+
+			.clock .h3 {
+				left: 95%;
+				top: 49%;
+				transform: translate(-100%, -50%);
+			}
+			.clock .h3::before {
+				content: "3";
+			}
+
+			.clock .h4 {
+				left: 90%;
+				top: 72%;
+				transform: translate(-100%, -50%);
+			}
+			.clock .h4::before {
+				content: "4";
+			}
+
+			.clock .h5 {
+				left: 74%;
+				top: 88%;
+				transform: translate(-100%, -50%);
+			}
+			.clock .h5::before {
+				content: "5";
+			}
+			.clock .h6 {
+				left: 50%;
+				top: 97%;
+				transform: translate(-50%, -100%);
+			}
+			.clock .h6::before {
+				content: "6";
+			}
+
+			.clock .h7 {
+				left: 28%;
+				top: 90%;
+				transform: translate(-50%, -100%);
+			}
+			.clock .h7::before {
+				content: "7";
+			}
+
+			.clock .h8 {
+				left: 12%;
+				top: 75%;
+				transform: translate(-50%, -100%);
+			}
+			.clock .h8::before {
+				content: "8";
+			}
+
+			.clock .h9 {
+				left: 5%;
+				top: 49%;
+				transform: translateY(-50%);
+			}
+			.clock .h9::before {
+				content: "9";
+			}
+
+			.clock .h10 {
+				left: 9%;
+				top: 28%;
+				transform: translateY(-50%);
+			}
+			.clock .h10::before {
+				content: "10";
+			}
+
+			.clock .h11 {
+				left: 25%;
+				top: 11%;
+				transform: translateY(-50%);
+			}
+			.clock .h11::before {
+				content: "11";
+			}
+			.clock .ctr {
+				width: 3%;
+				height: 3%;
+				border-radius: 50%;
+				left: 50%;
+				top: 50%;
+				transform: translate(-50%, -50%);
+				background-color: wheat;
+			}
+
+		#div-hour div {
+			top: 20%;
+			height: 30%;
+			border-left: 8px solid wheat;
+			margin-left: -1px;
+		}
+
+		#div-minute div {
+			top: 10%;
+			height: 40%;
+			border-left: 5px solid wheat;
+			margin-left: -1px;
+		}
+
+		#div-second div {
+			top: 5%;
+			height: 65%;
+			border-left: 3px solid red;
+		}
+	</style>
+	<script type="text/javascript">
+		function setClock() {
+			var time = new Date();
+			var hd = 360.0 * time.getHours() / 12 + 30.0 * time.getMinutes() / 60;
+			var md = 360.0 * time.getMinutes() / 60 + 6.0 * time.getSeconds() / 60;
+			var sd = 360.0 * time.getSeconds() / 60 + 6.0 * time.getMilliseconds() / 1000;
+			document.getElementById("div-hour").style.transform = "rotate(" + hd + "deg)";
+			document.getElementById("div-minute").style.transform = "rotate(" + md + "deg)";
+			document.getElementById("div-second").style.transform = "rotate(" + sd + "deg)";
+		}
+		window.onload = function () {
+			setClock();
+			setInterval(function () {
+				setClock();
+			}, 10);
+		};
+	</script>
+</head>
+<body>
+	<div class="clock ">
+		<span class="h12"></span>
+		<span class="h1"></span>
+		<span class="h2"></span>
+		<span class="h3"></span>
+		<span class="h4"></span>
+		<span class="h5"></span>
+		<span class="h6"></span>
+		<span class="h7"></span>
+		<span class="h8"></span>
+		<span class="h9"></span>
+		<span class="h10"></span>
+		<span class="h11"></span>
+		<div id="div-hour"><div></div></div>
+		<div id="div-minute"><div></div></div>
+		<div id="div-second"><div></div></div>
+		<span class="ctr"></span>
+	</div>
+</body>
+</html>
